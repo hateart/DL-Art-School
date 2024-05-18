@@ -22,7 +22,7 @@ from shutil import get_terminal_size
 import scp
 import paramiko
 from torch.utils.checkpoint import checkpoint
-from torch._six import inf
+from torch import inf
 
 import yaml
 
@@ -511,7 +511,7 @@ def list_to_device(l, dev):
 
 def map_to_device(m, dev):
     return {k: anything_to_device(v, dev) for k,v in m.items()}
-    
+
 def anything_to_device(obj, dev):
     if isinstance(obj, list):
         return list_to_device(obj, dev)

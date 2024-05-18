@@ -15,6 +15,7 @@ hyperparameter. Some cleaners are English-specific. You'll typically want to use
 import re
 from unidecode import unidecode
 from .numbers import normalize_numbers
+from tts_preprocess_et.convert import convert_sentence
 
 
 # Regular expression matching whitespace:
@@ -79,13 +80,10 @@ def transliteration_cleaners(text):
   text = collapse_whitespace(text)
   return text
 
-
 def english_cleaners(text):
   '''Pipeline for English text, including number and abbreviation expansion.'''
-  text = convert_to_ascii(text)
+  text = convert_sentence(text) #estonian
   text = lowercase(text)
-  text = expand_numbers(text)
-  text = expand_abbreviations(text)
   text = collapse_whitespace(text)
   text = text.replace('"', '')
   return text

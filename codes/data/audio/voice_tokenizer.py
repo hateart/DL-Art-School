@@ -74,12 +74,12 @@ def build_text_file_from_priors(priors, output):
 
 
 def train():
-    with open('all_texts.txt', 'r', encoding='utf-8') as at:
+    with open('transcriptions.txt', 'r', encoding='utf-8') as at:
         ttsd = at.readlines()
     #bcd = datasets.load_dataset('bookcorpus', cache_dir='Z:\\huggingface_datasets\\cache')['train']
 
     #allowed_characters_re = re.compile(r'^[0-9a-z!@#%_=:;"/, \-\$\^&\*\(\)\+\{\[\]\}\\\.\'\?—–ʼ]+$')
-    allowed_characters_re = re.compile(r'^[a-z!:;"/, \-\(\)\.\'\?ʼ]+$')
+    allowed_characters_re = re.compile(r'^[a-zäöüõšž!:;"/, \-\(\)\.\'\?ʼ]+$')
     def preprocess_word(word, report=False):
         word = english_cleaners(word)
         word = remove_extraneous_punctuation(word)
@@ -109,8 +109,8 @@ def train():
 
 
 def test():
-    tok = VoiceBpeTokenizer('gpt_tts_tokenizer.json')
-    with open('all_texts.txt', 'r', encoding='utf-8') as at:
+    tok = VoiceBpeTokenizer('custom_language_tokenizer.json')
+    with open('transcriptions.txt', 'r', encoding='utf-8') as at:
         ttsd = at.readlines()
         for line in ttsd:
             line = line.strip()
